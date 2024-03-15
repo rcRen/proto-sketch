@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "ProtoSketch",
   description:
     "Real-time Collaborative design platform for efficient prototyping and sharing.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

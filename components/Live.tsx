@@ -12,7 +12,10 @@ import ReactionSelector from "./reaction/ReactionSelector";
 import FlyingReaction from "./reaction/FlyingReaction";
 import useInterval from "@/hooks/useInterval";
 
-const Live = () => {
+type Props = {
+  canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;
+};
+const Live = ({ canvasRef }: Props) => {
   const others = useOthers();
   const [{ cursor }, updateMyPresence] = useMyPresence() as any;
   const [cursorState, setCursorState] = useState<CursorState>({
@@ -22,7 +25,7 @@ const Live = () => {
 
   const broadcast = useBroadcastEvent();
 
-   // Remove reactions that are not visible anymore (every 1 sec)
+  // Remove reactions that are not visible anymore (every 1 sec)
   useInterval(() => {
     setReactions((reaction) =>
       reaction.filter((r) => r.timestamp > Date.now() - 4000)
@@ -148,12 +151,15 @@ const Live = () => {
   }, [updateMyPresence]);
   return (
     <div
+      id="cavas"
       onPointerMove={handlePointerMove}
       onPointerDown={handlePointerDown}
       onPointerLeave={handlePointerLeave}
       onPointerUp={handlePointerUp}
       className="border-2 border-green-500 h-[100vh] w-full flex justify-center items-center text-center"
     >
+      <canvas className="border-2 border-white "ref={canvasRef} />
+
       {reactions.map((r) => (
         <FlyingReaction
           key={r.timestamp.toString()}
