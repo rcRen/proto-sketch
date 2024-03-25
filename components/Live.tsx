@@ -151,14 +151,14 @@ const Live = ({ canvasRef }: Props) => {
   }, [updateMyPresence]);
   return (
     <div
-      id="cavas"
+      id="canvas"
       onPointerMove={handlePointerMove}
       onPointerDown={handlePointerDown}
       onPointerLeave={handlePointerLeave}
       onPointerUp={handlePointerUp}
-      className="border-2 border-green-500 h-[100vh] w-full flex justify-center items-center text-center"
+      className="flex h-[100vh] w-full justify-center items-center text-center"
     >
-      <canvas className="border-2 border-white "ref={canvasRef} />
+      <canvas ref={canvasRef} className="border-2 border-white"/>
 
       {reactions.map((r) => (
         <FlyingReaction
